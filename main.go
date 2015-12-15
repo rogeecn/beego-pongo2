@@ -8,6 +8,7 @@
 package pongo2
 
 import (
+	"fmt"
 	"net/url"
 	"strings"
 	"sync"
@@ -36,7 +37,8 @@ func Render(beegoCtx *context.Context, tmpl string, ctx Context) {
 
 	if !ok || devMode {
 		var err error
-		template, err = p2.FromFile("templates/" + tmpl)
+		tplFile := fmt.Sprintf("templates/%s.html", tmpl)
+		template, err = p2.FromFile(tplFile)
 		if err != nil {
 			panic(err)
 		}
